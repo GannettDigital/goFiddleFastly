@@ -16,7 +16,8 @@ script:
   - megacheck ./...
   - golint -set_exit_status $(go list ./...)
   - go test -v -race ./...
-  - go test -race -coverprofile=coverage.txt -covermode=atomic
+  - curl --data-binary @codecov.yml https://codecov.io/validate
+  - go test ./fiddle/ -race -coverprofile=coverage.txt -covermode=atomic
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

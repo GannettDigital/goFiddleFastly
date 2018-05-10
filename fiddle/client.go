@@ -6,6 +6,7 @@ import (
 	cleanhttp "github.com/hashicorp/go-cleanhttp"
 )
 
+// BaseAddress is the Fastly Fiddle address.
 const BaseAddress = "https://fiddle.fastlydemo.net"
 
 // Client contains information about our goFiddleFastly client.
