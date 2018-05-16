@@ -187,3 +187,34 @@ func (c *Client) ExecuteFiddle(e *ExecuteFiddleInput) (*StreamResponse, error) {
 
 	return c.Stream(&session)
 }
+
+// DeleteFiddle removes code from the existing Fiddle to "delete" it.
+func (c *Client) DeleteFiddle(ID string) bool {
+	_, err := c.UpdateFiddle(&UpdateFiddleInput{
+		ID:         ID,
+		ReqURL:     "",
+		ReqMethod:  "",
+		ReqHeaders: "",
+		ReqBody:    "",
+		Origins:    []string{},
+		Vcl: Vcl{
+			Recv:    "",
+			Hit:     "",
+			Miss:    "",
+			Pass:    "",
+			Fetch:   "",
+			Error:   "",
+			Deliver: "",
+			Init:    "",
+		},
+		PurgeFirst:    true,
+		EnableCluster: true,
+		EnableShield:  true,
+	})
+
+	if err != nil {
+		return false
+	}
+
+	return true
+}
