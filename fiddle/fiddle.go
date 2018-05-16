@@ -212,9 +212,5 @@ func (c *Client) DeleteFiddle(ID string) bool {
 		EnableShield:  true,
 	})
 
-	if err != nil {
-		return false
-	}
-
-	return true
+	return err == nil
 }
